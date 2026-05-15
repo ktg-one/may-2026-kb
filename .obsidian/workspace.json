@@ -1,0 +1,377 @@
+{
+  "main": {
+    "id": "98b74cc4fb620cb7",
+    "type": "split",
+    "children": [
+      {
+        "id": "2357e369752a848f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8cf1e73f6f6a8b14",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "clients/AP-tech/APTech-Centralized-Intranet-Architecture.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "APTech-Centralized-Intranet-Architecture"
+            }
+          },
+          {
+            "id": "196d5cf5d0d40fb8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "clients/AP-tech/The_Foundation_of_Patient_Safety_A_Guide_to_Medical_Manufacturing_Standards.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "The_Foundation_of_Patient_Safety_A_Guide_to_Medical_Manufacturing_Standards"
+            }
+          },
+          {
+            "id": "e760613e7031151d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "clients/AP-tech/Strategic_Review_Navigating_Global_MedTech_Procurement_via_'China-Plus-One'_Architecture.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Strategic_Review_Navigating_Global_MedTech_Procurement_via_'China-Plus-One'_Architecture"
+            }
+          },
+          {
+            "id": "1518b3f1eb21bf99",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "clients/AP-tech/Strategic_Profile_AP_Technologies_Group_Pte._Ltd..md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Strategic_Profile_AP_Technologies_Group_Pte._Ltd."
+            }
+          },
+          {
+            "id": "274fea2998f48b76",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "clients/AP-tech/Strategic_Briefing_Global_Scaling_and_Geopolitical_Resilience_of_AP_Technologies.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Strategic_Briefing_Global_Scaling_and_Geopolitical_Resilience_of_AP_Technologies"
+            }
+          },
+          {
+            "id": "fee22ecb0286b75e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "clients/AP-tech/Operational_Transformation_Roadmap_Precision_AI_Integration_for_Global_Manufacturing_Leadership.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Operational_Transformation_Roadmap_Precision_AI_Integration_for_Global_Manufacturing_Leadership"
+            }
+          },
+          {
+            "id": "d23a431d00954dd8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "clients/AP-tech/Operational_Efficiency_Analysis_AI-Driven_Transformation_in_High-Precision_Catheter_Manufacturing.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Operational_Efficiency_Analysis_AI-Driven_Transformation_in_High-Precision_Catheter_Manufacturing"
+            }
+          },
+          {
+            "id": "001a6806a9f99bd9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "clients/AP-tech/notebooklm-report-operational-transformation-roadmap-precision-ai-in-2026-05-07.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "notebooklm-report-operational-transformation-roadmap-precision-ai-in-2026-05-07"
+            }
+          },
+          {
+            "id": "cf9885836a272c7b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "clients/kismet-finance/KISMET-Deliverables-Map-May2026.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "KISMET-Deliverables-Map-May2026"
+            }
+          }
+        ],
+        "currentTab": 7
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "12572a26c16b3c71",
+    "type": "split",
+    "children": [
+      {
+        "id": "4e019dcedee3a607",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "09ff64b16b2e18f4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "c0c5b395d1925299",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "eff1d6a612784111",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 359.5
+  },
+  "right": {
+    "id": "865ff65aff43ad79",
+    "type": "split",
+    "children": [
+      {
+        "id": "ed84847dd5059c7b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7604df025ad6c812",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Welcome"
+            }
+          },
+          {
+            "id": "32337f4ab03ee012",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Welcome"
+            }
+          },
+          {
+            "id": "684c363ac59442f4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "7d0c74cfd725e4e2",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "753e0519d193e9fe",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Welcome"
+            }
+          },
+          {
+            "id": "3eb4b5b62f1ba8d5",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "046469bee5e23374",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-view",
+              "state": {},
+              "icon": "smart-connections",
+              "title": "Connections"
+            }
+          }
+        ],
+        "currentTab": 6
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian42-brat:BRAT": false,
+      "obsidget:🧩 Widget Gallery": false,
+      "agent-client:Open agent client": false,
+      "smart-connections:Smart Connections: Open connections view": false,
+      "smart-connections:Smart Lookup: Open lookup view": false,
+      "smart-connections:Smart Connections: Open random connection": false,
+      "terminal:Open terminal": false
+    }
+  },
+  "active": "001a6806a9f99bd9",
+  "lastOpenFiles": [
+    "Destiny — Wednesday, 13 May 2026.pdf",
+    "clients/AP-tech/~WRL2586.tmp",
+    "clients/AP-tech/~WRD0005.tmp",
+    "clients/AP-tech/~WRD0004.tmp",
+    "clients/AP-tech/2026-05-12-FINAL-email-to-Ken-annotated.md",
+    "clients/kismet-finance/2026-05-13-strategic-meeting-prep-v2.md",
+    "clients/kismet-finance/2026-05-13-strategic-meeting-prep.md",
+    "clients/AP-tech/HALLUCINATION_2026-05-12-Ken-warm-reply.md",
+    "clients/AP-tech/HALLUCINATION_2026-05-12-friday-prep-decomp.md",
+    "clients/AP-tech/HALLUCINATION_2026-05-12-enrich-self-gauge-and-cited-pricing.md",
+    "clients/AP-tech/HALLUCINATION_2026-05-12-AP-Tech-AI-Purchasing-Proposal-v2.md",
+    "clients/AP-tech/HALLUCINATION_2026-05-12-AP-Tech-AI-Purchasing-Proposal-v2.docx",
+    "OpenHuman_0.53.22_x64-setup.exe",
+    "Unconfirmed 219024.crdownload",
+    "clients/AP-tech/2026-05-12-enrich-self-gauge-and-cited-pricing.md",
+    "clients/AP-tech/2026-05-12-friday-prep-decomp.md",
+    "clients/AP-tech/~$ Tech AI Purchasing Agent — Validated Proposal & Pricing Guide.docx",
+    "clients/kismet-finance/KISMET-Deliverables-Map-May2026.md",
+    "clients/AP-tech/2026-05-12-Ken-warm-reply.md",
+    "clients/AP-tech/2026-05-12-AP-Tech-AI-Purchasing-Proposal-v2.md",
+    "clients/AP-tech/2026-05-12-AP-Tech-AI-Purchasing-Proposal-v2.docx",
+    "clients/AP-tech/AP Tech AI Purchasing Agent — Validated Proposal & Pricing Guide.docx",
+    "Pre-Engagement AI Discovery SOP.docx",
+    "clients/kismet-finance/KISMET-Delivery-Summary.md",
+    "clients/kismet-finance/notebooklm-extract-2026-05-12.md",
+    "clients/kismet-finance/kismet-automation.md",
+    "clients/AP-tech/APTech-Process-Automation-Project.md",
+    "clients/kismet-finance/Knowledge Base Usage Patterns  The Analytical Strategic Mind.md",
+    "clients/AP-tech/Navigating_the_MedTech_Map_A_Learner’s_Guide_to_Global_Trade_and_Technology.md",
+    "clients/AP-tech/notebooklm-report-operational-transformation-roadmap-precision-ai-in-2026-05-07.md",
+    "clients/AP-tech/Operational_Efficiency_Analysis_AI-Driven_Transformation_in_High-Precision_Catheter_Manufacturing.md",
+    "clients/AP-tech/Operational_Transformation_Roadmap_Precision_AI_Integration_for_Global_Manufacturing_Leadership.md",
+    "clients/AP-tech/Strategic_Briefing_Global_Scaling_and_Geopolitical_Resilience_of_AP_Technologies.md",
+    "clients/AP-tech/Strategic_Profile_AP_Technologies_Group_Pte._Ltd..md",
+    "clients/AP-tech/Strategic_Review_Navigating_Global_MedTech_Procurement_via_'China-Plus-One'_Architecture.md",
+    "clients/AP-tech/The_Foundation_of_Patient_Safety_A_Guide_to_Medical_Manufacturing_Standards.md",
+    "clients/AP-tech/ap-tech-research/ap-tech.png",
+    "clients/AP-tech/ap-tech-research/meeting-prep/infographic.png",
+    "clients/AP-tech/ap-tech-slides/Slide_15.png",
+    "clients/AP-tech/ap-tech-slides/Slide_14.png",
+    "clients/AP-tech/ap-tech-slides/Slide_13.png",
+    "clients/AP-tech/ap-tech-slides/Slide_12.png",
+    "clients/AP-tech/ap-tech-slides/Slide_11.png",
+    "clients/AP-tech/ap-tech-slides/Slide_10.png",
+    "clients/AP-tech/ap-tech-slides/Slide_09.png",
+    "clients/AP-tech/ap-tech-slides/Slide_08.png"
+  ]
+}

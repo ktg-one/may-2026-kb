@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Technologies × KTG — Architectural Read</title>
+<style>
+  :root {
+    --bg: #0A1220;
+    --bg-elevated: #111B2E;
+    --bg-card: #15213A;
+    --line: #1E2C48;
+    --line-soft: #233355;
+    --text: #E8EDF5;
+    --text-dim: #8FA0BC;
+    --text-faint: #5A6A85;
+    --accent: #E5A04C;
+    --accent-soft: rgba(229, 160, 76, 0.12);
+    --teal: #5BC2A8;
+    --teal-soft: rgba(91, 194, 168, 0.12);
+    --red: #E0625C;
+    --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+    --mono: 'SF Mono', 'JetBrains Mono', 'Consolas', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    font-size: 15px;
+    font-feature-settings: "ss01", "cv01";
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  /* ---------- HERO ---------- */
+  header.hero {
+    padding: 88px 0 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-marker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-faint);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero-marker::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    color: var(--text-dim);
+    font-size: 19px;
+    line-height: 1.55;
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    margin-top: 32px;
+  }
+  .hero-meta > div {
+    padding: 24px 24px 0 0;
+    border-right: 1px solid var(--line);
+  }
+  .hero-meta > div:last-child { border-right: none; padding-right: 0; }
+  .hero-meta-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+  }
+  .hero-meta-value {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--text);
+  }
+  /* ---------- SECTIONS ---------- */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-marker {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 36px;
+    letter-spacing: -0.01em;
+  }
+  .section-lede {
+    color: var(--text-dim);
+    font-size: 17px;
+    max-width: 800px;
+    margin-bottom: 48px;
+  }
+  /* ---------- TRIGGER STRIP ---------- */
+  .triggers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .trigger {
+    padding: 28px 28px 28px 0;
+    border-right: 1px solid var(--line-soft);
+  }
+  .trigger:nth-child(3) { border-right: none; padding-right: 0; }
+  .trigger:nth-child(n+4) {
+    border-top: 1px solid var(--line-soft);
+    padding-top: 28px;
+  }
+  .trigger:nth-child(6) { border-right: none; padding-right: 0; }
+  .trigger-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+  .trigger-headline {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .trigger-body {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  /* ---------- 4-SITE MAP ---------- */
+  .site-map {
+    margin-top: 48px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 32px;
+  }
+  .site-map-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 24px;
+  }
+  .site-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .site {
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+  }
+  .site-name {
+    font-family: var(--serif);
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .site-role {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .site-stat {
+    color: var(--text-dim);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  /* ---------- DOMAIN CARDS ---------- */
+  .domain {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 32px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .domain:last-child { border-bottom: none; }
+  .domain-num {
+    font-family: var(--serif);
+    font-size: 56px;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.45;
+  }
+  .domain-content {}
+  .domain-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .domain-tag.lead {
+    color: var(--teal);
+  }
+  .domain-tag.lead::before {
+    content: '◆ ';
+    color: var(--teal);
+  }
+  .domain-title {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .domain-prob {
+    color: var(--text-dim);
+    font-size: 15px;
+    margin-bottom: 24px;
+    max-width: 760px;
+  }
+  .domain-arch {
+    background: var(--bg-elevated);
+    border-left: 2px solid var(--accent);
+    padding: 24px 28px;
+    margin-bottom: 24px;
+  }
+  .domain-arch-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .domain-arch ul {
+    list-style: none;
+  }
+  .domain-arch li {
+    padding: 6px 0 6px 18px;
+    position: relative;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .domain-arch li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--text-faint);
+  }
+  .domain-arch li b {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-bottom: 20px;
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .phase {
+    padding: 18px 20px;
+    border-right: 1px solid var(--line-soft);
+  }
+  .phase:last-child { border-right: none; }
+  .phase-day {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .phase-text {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .roi-line {
+    color: var(--teal);
+    font-size: 13px;
+    font-family: var(--mono);
+    padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .roi-line::before {
+    content: '↑ ROI · ';
+    color: var(--text-faint);
+  }
+  /* ---------- ROADMAP ---------- */
+  .roadmap {
+    margin-top: 32px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 32px;
+  }
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0;
+  }
+  .roadmap-row {
+    display: contents;
+  }
+  .roadmap-phase {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    padding: 16px 16px 16px 0;
+    border-top: 1px solid var(--line-soft);
+    text-transform: uppercase;
+  }
+  .roadmap-content {
+    padding: 16px 0;
+    border-top: 1px solid var(--line-soft);
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .roadmap-row:first-child .roadmap-phase,
+  .roadmap-row:first-child .roadmap-content {
+    border-top: none;
+    padding-top: 0;
+  }
+  .roadmap-content b {
+    color: var(--text);
+    font-weight: 500;
+  }
+  /* ---------- ENGAGEMENT TABLE ---------- */
+  .engagement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+  }
+  .engagement-table th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 500;
+  }
+  .engagement-table td {
+    padding: 18px 16px;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 14px;
+    vertical-align: top;
+  }
+  .engagement-table td:first-child {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--accent);
+    width: 180px;
+  }
+  .engagement-table td:nth-child(2) {
+    color: var(--text);
+    width: 120px;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .engagement-table td:nth-child(3) {
+    color: var(--text-dim);
+  }
+  .engagement-table td:nth-child(4) {
+    font-family: var(--mono);
+    color: var(--teal);
+    font-size: 13px;
+    width: 140px;
+    text-align: right;
+  }
+  /* ---------- DIFF / WHY SOLO ---------- */
+  .diff {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .diff-col {
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 28px;
+  }
+  .diff-col.solo {
+    border-color: var(--accent);
+  }
+  .diff-h {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .diff-h.consult { color: var(--text-faint); }
+  .diff-h.solo { color: var(--accent); }
+  .diff ul {
+    list-style: none;
+  }
+  .diff li {
+    padding: 10px 0 10px 22px;
+    position: relative;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .diff li:last-child { border-bottom: none; }
+  .diff-col.consult li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    color: var(--text-faint);
+    font-size: 16px;
+  }
+  .diff-col.solo li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 14px;
+  }
+  /* ---------- CLOSER ---------- */
+  .closer {
+    padding: 100px 0 80px;
+    text-align: center;
+    border-bottom: none;
+  }
+  .closer-quote {
+    font-family: var(--serif);
+    font-size: 38px;
+    line-height: 1.25;
+    font-style: italic;
+    max-width: 800px;
+    margin: 0 auto 32px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .closer-attr {
+    color: var(--text-faint);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+  .closer-cta {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px 32px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+  }
+  .cta-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .cta-text {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--text);
+  }
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 32px 0 64px;
+    color: var(--text-faint);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: space-between;
+  }
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 880px) {
+    h1 { font-size: 44px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .hero-meta > div:nth-child(2) { border-right: none; }
+    .triggers { grid-template-columns: 1fr; }
+    .trigger { border-right: none !important; border-bottom: 1px solid var(--line-soft); padding-right: 0; }
+    .site-grid { grid-template-columns: 1fr 1fr; }
+    .domain { grid-template-columns: 1fr; gap: 16px; }
+    .timeline { grid-template-columns: 1fr; }
+    .phase { border-right: none; border-bottom: 1px solid var(--line-soft); }
+    .diff { grid-template-columns: 1fr; }
+    .roadmap-grid { grid-template-columns: 1fr; }
+    .engagement-table td:first-child { width: auto; }
+  }
+  /* ---------- PRINT ---------- */
+  @media print {
+    body { background: white; color: black; }
+    .closer { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="hero-marker">Pre-Read · Charles Tang × KTG · 2026·05·08</div>
+  <h1>An <em>architectural read</em> of AP Technologies' next 90 days.</h1>
+  <p class="hero-sub">
+    Two problems were stated. Three more sit underneath them. Each is buildable
+    by one architect inside ninety days, and each compounds the others.
+    This is what one solo solutions architect would ship — and why that's the
+    right shape of partnership for where AP Tech sits today.
+  </p>
+  <div class="hero-meta">
+    <div>
+      <div class="hero-meta-label">Prepared for</div>
+      <div class="hero-meta-value">Charles Tang</div>
+    </div>
+    <div>
+      <div class="hero-meta-label">By</div>
+      <div class="hero-meta-value">KTG · Solo Architect</div>
+    </div>
+    <div>
+      <div class="hero-meta-label">Trigger</div>
+      <div class="hero-meta-value">QMSR · Feb 2026</div>
+    </div>
+    <div>
+      <div class="hero-meta-label">Horizon</div>
+      <div class="hero-meta-value">90 Days</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============== STRATEGIC FRAME ============== -->
+<section>
+  <div class="section-marker">
+    <span class="section-num">01 / FRAME</span>
+  </div>
+  <h2 class="section-title">Six things that just happened, and why this conversation is now.</h2>
+  <p class="section-lede">
+    Most CDMOs are running last year's playbook. AP Tech sits at a structural
+    inflection point where geopolitical, regulatory, and talent pressures
+    arrived inside the same six-month window. Each is solvable. Together,
+    they define a roadmap.
+  </p>
+
+  <div class="triggers">
+    <div class="trigger">
+      <span class="trigger-tag">Regulatory</span>
+      <div class="trigger-headline">FDA QMSR replaces QSR</div>
+      <p class="trigger-body">Effective Feb 2, 2026. AI in the production loop now needs CSA-style validation, audit trail, drift monitoring. Most CDMOs treat this as a checkbox; the architectural opportunity is to ship it as a competitive sales asset.</p>
+    </div>
+    <div class="trigger">
+      <span class="trigger-tag">Capital</span>
+      <div class="trigger-headline">AGIC's tech mandate is on the clock</div>
+      <p class="trigger-body">"Technological capability enhancement" is one of four explicit pillars of the 2023 thesis. With a CCO appointed in 2026, the operational scaling phase has formally begun.</p>
+    </div>
+    <div class="trigger">
+      <span class="trigger-tag">Geographic</span>
+      <div class="trigger-headline">Bac Ninh ISO 13485 in flight</div>
+      <p class="trigger-body">Until certified, Class II/III cannot run there. The bottleneck is not buildings — it's transferring tacit engineering knowledge from Singapore to Vietnam at speed.</p>
+    </div>
+    <div class="trigger">
+      <span class="trigger-tag">Talent</span>
+      <div class="trigger-headline">26% manufacturing turnover · SG 2025</div>
+      <p class="trigger-body">68% of leavers cite career-progression, not pay. The poaching risk is real and pricing won't fix it. What fixes it is making expertise institutional rather than personal.</p>
+    </div>
+    <div class="trigger">
+      <span class="trigger-tag">Trade</span>
+      <div class="trigger-headline">Tariff regime stays punitive</div>
+      <p class="trigger-body">20–40% base, 50% Cu, up to 200% on biocomponents. Every additional NPI day costs margin. NPI velocity is now a tariff-mitigation lever, not just a sales lever.</p>
+    </div>
+    <div class="trigger">
+      <span class="trigger-tag">Commercial</span>
+      <div class="trigger-headline">Pipeline is hot post-CMEF</div>
+      <p class="trigger-body">CMEF Shanghai (Apr 9–12, 2026) just generated demand. The constraint is sales-engineering response time, not lead supply. Knowledge retrieval becomes a quote-velocity problem.</p>
+    </div>
+  </div>
+
+  <!-- 4-SITE MAP -->
+  <div class="site-map">
+    <div class="site-map-title">The four-site architecture this is built around</div>
+    <div class="site-grid">
+      <div class="site">
+        <div class="site-name">Singapore</div>
+        <div class="site-role">HQ · R&amp;D · IP</div>
+        <div class="site-stat">JTC Surface Engineering Hub. Polymer compounding, PTFE etching, FEP heat shrink. ISO 13485:2016 + scope extension. The brain.</div>
+      </div>
+      <div class="site">
+        <div class="site-name">Xiamen</div>
+        <div class="site-role">High Volume · Asia</div>
+        <div class="site-stat">10+ extrusion lines. Domestic Asia + non-US global. The mature scaling node.</div>
+      </div>
+      <div class="site">
+        <div class="site-name">Bac Ninh</div>
+        <div class="site-role">Tariff-Exempt · Export</div>
+        <div class="site-stat">130k sq ft, EPE status, Maersk #15 logistics. ISO 13485 in flight. The geopolitical hedge.</div>
+      </div>
+      <div class="site">
+        <div class="site-name">Irvine, CA</div>
+        <div class="site-role">Synchronous Eng</div>
+        <div class="site-stat">Catheter Lab adjacent to Edwards, Masimo, Glaukos. Rapid prototyping front-end of the pipeline.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== DOMAINS ============== -->
+<section>
+  <div class="section-marker">
+    <span class="section-num">02 / DOMAINS</span>
+  </div>
+  <h2 class="section-title">Five problem domains. Two stated. Three underneath.</h2>
+  <p class="section-lede">
+    The two stated asks — automation and a centralised intranet — are real. But
+    they're symptoms. The three domains underneath them (knowledge, talent,
+    QA) are what generate the compounding return. Each is buildable in
+    isolation; together they form a single operating layer.
+  </p>
+
+  <!-- DOMAIN 1: KNOWLEDGE BOT -->
+  <div class="domain">
+    <div class="domain-num">01</div>
+    <div class="domain-content">
+      <div class="domain-tag lead">Lead wedge · most underestimated</div>
+      <h3 class="domain-title">Engineering Knowledge Bot</h3>
+      <p class="domain-prob">
+        70+ engineers across four sites manage 100+ concurrent NPI projects. The "how" of complex tri-layer co-extrusion, PEBAX/PEEK rheology, and PTFE etching parameters lives in heads, not systems. Every senior departure stretches NPI cycles. Every ramp at Bac Ninh waits on knowledge transfer that today moves at the speed of flights.
+      </p>
+      <div class="domain-arch">
+        <div class="domain-arch-title">Architecture</div>
+        <ul>
+          <li><b>Ingest layer.</b> Closed-LLM RAG over SOPs, NPI reports, validation protocols, Slack/Teams threads, drawing repos, MES exports, deviation logs.</li>
+          <li><b>Parameter card extraction.</b> Every NPI run yields one structured card — material lot, die geometry, melt profile, line speed, defect signature, fix.</li>
+          <li><b>Role-gated retrieval.</b> Engineers get parameter recall; QA gets deviation precedent; sales-engineering gets tolerance feasibility live during OEM calls.</li>
+          <li><b>QMSR-ready governance.</b> Every response logged with sources, model card, drift monitor, human-in-the-loop sign-off for regulated submissions.</li>
+        </ul>
+      </div>
+      <div class="timeline">
+        <div class="phase">
+          <div class="phase-day">DAY 1—30</div>
+          <div class="phase-text">Ingest 90% of Singapore corpus. Private RAG to 5 senior engineers. Measure recall on 50 known-answer questions.</div>
+        </div>
+        <div class="phase">
+          <div class="phase-day">DAY 31—60</div>
+          <div class="phase-text">Extend to Xiamen + Irvine. Slack/Teams integration. Parameter card extraction live.</div>
+        </div>
+        <div class="phase">
+          <div class="phase-day">DAY 61—90</div>
+          <div class="phase-text">Bac Ninh rollout (timed with ISO cert). Audit trail hardened. QA incident replay live.</div>
+        </div>
+      </div>
+      <div class="roi-line">15–25% NPI cycle reduction on second-instance projects · one avoided 12-month revalidation pays the engagement many times over.</div>
+    </div>
+  </div>
+
+  <!-- DOMAIN 2: TALENT INTEL -->
+  <div class="domain">
+    <div class="domain-num">02</div>
+    <div class="domain-content">
+      <div class="domain-tag">Sensitive · founder-owned · external-first</div>
+      <h3 class="domain-title">Talent Intelligence &amp; Retention Signal</h3>
+      <p class="domain-prob">
+        Replacing a senior process engineer in Singapore costs 150–300% of salary plus 6–18 months of AP-specific ramp. The risk vector is invisible until exit. The fix is an early-warning system that runs founder-direct, never through middle management, and is defensible if leaked.
+      </p>
+      <div class="domain-arch">
+        <div class="domain-arch-title">Architecture</div>
+        <ul>
+          <li><b>External signal layer.</b> LinkedIn activity deltas, recruiter-connection bursts, conference roster mentions, sector job-posting velocity.</li>
+          <li><b>Internal signal layer (consent-based).</b> HR pulse integration, 1:1 cadence drift, project-rotation gaps, knowledge-bot usage drop-off as disengagement proxy.</li>
+          <li><b>Per-engineer composite score.</b> Weekly digest to Charles &amp; Sean only. Individual scores never persisted — only the intervention recommendation is stored.</li>
+          <li><b>Stay conversation playbook.</b> Pre-built career-track scoping, equity refresh signal, structured intervention. Designed by you, run by the founder.</li>
+        </ul>
+      </div>
+      <div class="timeline">
+        <div class="phase">
+          <div class="phase-day">DAY 1—30</div>
+          <div class="phase-text">External-only MVP on the 20 most critical engineers. Weekly digest live.</div>
+        </div>
+        <div class="phase">
+          <div class="phase-day">DAY 31—60</div>
+          <div class="phase-text">Optional internal signal integration. Manager 1:1 cadence tracking.</div>
+        </div>
+        <div class="phase">
+          <div class="phase-day">DAY 61—90</div>
+          <div class="phase-text">Intervention playbook live. Retention KPI dashboard. Quarterly retention review cadence.</div>
+        </div>
+      </div>
+      <div class="roi-line">One avoided senior departure ≈ S$300–500K loaded · target 3+/yr retained = S$1M+ &amp; protected NPI velocity.</div>
+    </div>
+  </div>
+
+  <!-- DOMAIN 3: AI-NATIVE QA -->
+  <div class="domain">
+    <div class="domain-num">03</div>
+    <div class="domain-content">
+      <div class="domain-tag lead">Compliance wedge becomes commercial moat</div>
+      <h3 class="domain-title">AI-Native Quality Assurance</h3>
+      <p class="domain-prob">
+        Today: CpK 1.33, 4-sigma, ~63 PPM. The frontier: CpK 1.67+, &lt;1 PPM. Manual visual inspection at 0.0005" wall and 0.01" PTFE ID is mathematically impossible. Add QMSR (Feb 2026), and AI in the production loop now needs validation, audit trails, drift monitoring. Most CDMOs are scrambling. Build it as a sales asset instead.
+      </p>
+      <div class="domain-arch">
+        <div class="domain-arch-title">Architecture</div>
+        <ul>
+          <li><b>Vision layer.</b> Line-scan + laser micrometry. AI defect classifier with explainability overlays for QA reviewers.</li>
+          <li><b>Closed-loop control.</b> Reinforcement-learning agent for extrusion parameters within pre-validated guardrails. Temperature, pressure, pull-speed.</li>
+          <li><b>PINN module.</b> Physics-informed neural net for reflow bonding thermal profile — delamination prevention by design.</li>
+          <li><b>QMSR governance wrapper.</b> Model card, validation per ISO 13485:7.5.6 + CSA, full inference audit trail, drift monitor with HITL trigger. <em>This is the differentiator.</em></li>
+          <li><b>Yield dashboard.</b> Per-site, per-line, per-material-lot. Becomes the spine of the centralised intranet.</li>
+        </ul>
+      </div>
+      <div class="timeline">
+        <div class="phase">
+          <div class="phase-day">DAY 1—30</div>
+          <div class="phase-text">One Singapore extrusion line. Vision in shadow mode for 2 weeks. Measure agreement vs human.</div>
+        </div>
+        <div class="phase">
+          <div class="phase-day">DAY 31—60</div>
+          <div class="phase-text">Advisory mode live. QMSR governance wrapper piloted with Sean's QMS team.</div>
+        </div>
+        <div class="phase">
+          <div class="phase-day">DAY 61—90</div>
+          <div class="phase-text">Closed-loop on one parameter (line speed first). Begin Xiamen replication.</div>
+        </div>
+      </div>
+      <div class="roi-line">+40% defect capture · −50% inspection time · S$90–180K/yr scrap prevented per line · QMSR posture as RFP win factor.</div>
+    </div>
+  </div>
+
+  <!-- DOMAIN 4: PROCESS AUTOMATION -->
+  <div class="domain">
+    <div class="domain-num">04</div>
+    <div class="domain-content">
+      <div class="domain-tag">Stated · #1 · highest-velocity quick win</div>
+      <h3 class="domain-title">Process Automation</h3>
+      <p class="domain-prob">
+        The real bottleneck is at the seams between systems: ERP ↔ MES ↔ QMS ↔ Customer Portal ↔ Email. Engineers and ops staff burn 30–40% of their day on manual handoff. n8n-led orchestration is the highest-leverage answer for an org this size — slot in, don't replace.
+      </p>
+      <div class="domain-arch">
+        <div class="domain-arch-title">Top 10 workflows scoped Day 1</div>
+        <ul>
+          <li><b>1.</b> OEM RFQ → DFM checklist → engineer assignment → quote</li>
+          <li><b>2.</b> NPI deviation → root-cause workflow → CAPA → trend report</li>
+          <li><b>3.</b> Material lot receipt → COA validation → MES release</li>
+          <li><b>4.</b> Customer change order → impact assessment → re-validation flag</li>
+          <li><b>5.</b> Cleanroom env data → trend → out-of-spec alert</li>
+          <li><b>6.</b> Equipment maintenance trigger → spare-parts → tech dispatch</li>
+          <li><b>7.</b> Vietnam EPE customs documentation auto-prep</li>
+          <li><b>8.</b> ISO 13485 internal audit calendar → finding → CAPA close</li>
+          <li><b>9.</b> Sales call notes → CRM update → engineering ticket</li>
+          <li><b>10.</b> Tariff classification per shipment line item</li>
+        </ul>
+      </div>
+      <div class="timeline">
+        <div class="phase">
+          <div class="phase-day">DAY 1—30</div>
+          <div class="phase-text">Top 3 scoped, mapped, prototyped. Measurement framework agreed with ops.</div>
+        </div>
+        <div class="phase">
+          <div class="phase-day">DAY 31—60</div>
+          <div class="phase-text">Live in production at one site. Cycle-time savings instrumented.</div>
+        </div>
+        <div class="phase">
+          <div class="phase-day">DAY 61—90</div>
+          <div class="phase-text">Top 10 deployed across Singapore + Xiamen. Bac Ninh queued.</div>
+        </div>
+      </div>
+      <div class="roi-line">5–15 hrs/week reclaimed per workflow · top 10 ≈ 50–150 hrs/week ≈ 1–3 FTE freed for billable engineering work.</div>
+    </div>
+  </div>
+
+  <!-- DOMAIN 5: INTRANET -->
+  <div class="domain">
+    <div class="domain-num">05</div>
+    <div class="domain-content">
+      <div class="domain-tag">Stated · #2 · the founder's morning brief</div>
+      <h3 class="domain-title">Centralised Intranet — Three Pillars, One Brief</h3>
+      <p class="domain-prob">
+        Charles wants insight, not a dashboard farm. Build three pillars and one weekly LLM-narrated brief delivered to his phone Monday 7am SGT. He doesn't open dashboards; he reads a paragraph that tells him what changed, what's anomalous, what to act on.
+      </p>
+      <div class="domain-arch">
+        <div class="domain-arch-title">Architecture</div>
+        <ul>
+          <li><b>Foundation.</b> Lightweight semantic layer over a unified analytical store (Snowflake or BigQuery). dbt or Cube.dev for the layer.</li>
+          <li><b>Pillar 1 — OEM Pipeline &amp; NPI Velocity.</b> Projects by stage, days-in-stage, parameter-card completeness, blocker map.</li>
+          <li><b>Pillar 2 — Operational Health.</b> Yield, scrap, downtime, CpK trend by site / line / material.</li>
+          <li><b>Pillar 3 — Talent &amp; Knowledge.</b> Engineer utilisation, knowledge-bot usage, retention risk score (ties to Domain 02).</li>
+          <li><b>Monday Brief.</b> LLM-generated narrative — what changed, what's anomalous, what to act on. Phone-readable. Audited weekly for accuracy.</li>
+        </ul>
+      </div>
+      <div class="timeline">
+        <div class="phase">
+          <div class="phase-day">DAY 1—30</div>
+          <div class="phase-text">Data inventory + Pillar 1 MVP (OEM pipeline).</div>
+        </div>
+        <div class="phase">
+          <div class="phase-day">DAY 31—60</div>
+          <div class="phase-text">Pillars 2 &amp; 3 live.</div>
+        </div>
+        <div class="phase">
+          <div class="phase-day">DAY 61—90</div>
+          <div class="phase-text">Monday Brief in production. Quarterly insight review cadence.</div>
+        </div>
+      </div>
+      <div class="roi-line">~1 hr/day reclaimed for Charles · decision latency on at-risk programs from weeks to days.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ROADMAP ============== -->
+<section>
+  <div class="section-marker">
+    <span class="section-num">03 / ROADMAP</span>
+  </div>
+  <h2 class="section-title">A 90-day rollout that ships, not deliberates.</h2>
+  <p class="section-lede">
+    Each phase ends with something running in production, not a slide deck.
+    Phase 0 is a low-commitment fit test. Phase 1 onward is build. Every phase
+    has a measurable deliverable and a kill-switch decision point.
+  </p>
+
+  <div class="roadmap">
+    <div class="roadmap-grid">
+      <div class="roadmap-row">
+        <div class="roadmap-phase">Phase 0 · Discovery</div>
+        <div class="roadmap-content"><b>Weeks 1–2.</b> Site visit (Singapore), data audit, stakeholder interviews with Charles, Sean, Russell, 3 senior engineers, QMS lead. <b>Output: written diagnostic, prioritised domain shortlist, Phase 1 scope.</b> Kill-switch: at end of Week 2 either side can walk.</div>
+      </div>
+      <div class="roadmap-row">
+        <div class="roadmap-phase">Phase 1 · Foundation</div>
+        <div class="roadmap-content"><b>Days 1–30.</b> Knowledge Bot v1 (Singapore), Top-3 workflows, OEM Pipeline dashboard. <b>Output: three live systems, one usage metric per system, written hand-off doc.</b></div>
+      </div>
+      <div class="roadmap-row">
+        <div class="roadmap-phase">Phase 2 · Expansion</div>
+        <div class="roadmap-content"><b>Days 31–60.</b> All five domains in production at Singapore. QA shadow mode, Talent signal external-only, full top-10 automation, all three intranet pillars. <b>Output: every domain has a Singapore reference implementation.</b></div>
+      </div>
+      <div class="roadmap-row">
+        <div class="roadmap-phase">Phase 3 · Multi-site</div>
+        <div class="roadmap-content"><b>Days 61–90.</b> Xiamen + Bac Ninh + Irvine extension. Bac Ninh sequencing aligned to ISO 13485 cert. <b>Output: knowledge bot multi-site, QA in advisory mode at 2 sites, Monday Brief live.</b></div>
+      </div>
+      <div class="roadmap-row">
+        <div class="roadmap-phase">Steady State</div>
+        <div class="roadmap-content"><b>Day 91+.</b> Optional retainer or transition to internal team. All systems source-controlled, documented, handover-ready from Day 1. No lock-in by design.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ENGAGEMENT ============== -->
+<section>
+  <div class="section-marker">
+    <span class="section-num">04 / ENGAGEMENT</span>
+  </div>
+  <h2 class="section-title">Phased commitment. Order-of-magnitude cost advantage.</h2>
+  <p class="section-lede">
+    Compare to: a senior consultant at a Tier-1 firm runs S$8–12K per day, four-person team for twelve months ≈ S$1M+. Solo build velocity is one architect's overhead, not a partnership tax — and the deliverable is a system, not a deck.
+  </p>
+
+  <table class="engagement-table">
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Duration</th>
+        <th>Scope</th>
+        <th>Indicative</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Phase 0 · Discovery</td>
+        <td>2 weeks</td>
+        <td>Site visit, data audit, stakeholder interviews, written diagnostic, Phase 1 scope</td>
+        <td>S$15–25K fixed</td>
+      </tr>
+      <tr>
+        <td>Phase 1 · Foundation</td>
+        <td>30 days</td>
+        <td>Knowledge Bot v1 + top-3 workflows + Pillar-1 dashboard live</td>
+        <td>S$40–60K fixed</td>
+      </tr>
+      <tr>
+        <td>Phase 2 · Expansion</td>
+        <td>60 days</td>
+        <td>All 5 domains in production at Singapore</td>
+        <td>S$80–120K fixed</td>
+      </tr>
+      <tr>
+        <td>Phase 3 · Multi-site</td>
+        <td>90 days</td>
+        <td>Xiamen + Bac Ninh + Irvine extension. Optional retainer thereafter.</td>
+        <td>S$60–90K fixed</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============== WHY SOLO ============== -->
+<section>
+  <div class="section-marker">
+    <span class="section-num">05 / SHAPE</span>
+  </div>
+  <h2 class="section-title">Why a solo architect is the right shape for this stage.</h2>
+  <p class="section-lede">
+    AGIC's thesis explicitly calls for "technological capability enhancement." A consultancy gives you slides on capability. A solo architect ships capability. Different shapes for different phases — and post-CCO, you're past the slide phase.
+  </p>
+
+  <div class="diff">
+    <div class="diff-col consult">
+      <div class="diff-h consult">Tier-1 Consultancy</div>
+      <ul>
+        <li>Partner overhead, junior teams learning on your dime</li>
+        <li>Deliverables are slides; build is "Phase 2, separate engagement"</li>
+        <li>S$8–12K/day per resource, multi-headcount</li>
+        <li>Frameworks are generalised, not AP-specific</li>
+        <li>Time-to-first-system: 6–9 months</li>
+        <li>Lock-in by design (the partner rotates, the engagement persists)</li>
+      </ul>
+    </div>
+    <div class="diff-col solo">
+      <div class="diff-h solo">Solo Architect — KTG</div>
+      <ul>
+        <li>One throat to choke. No PMs, no juniors, no partner tax.</li>
+        <li>Deliverables are running systems with measurable usage from Day 30</li>
+        <li>Order-of-magnitude lower cost, fixed-price by phase</li>
+        <li>Architecture tuned to AP Tech specifically (already done — see Sections 01–02)</li>
+        <li>Time-to-first-system: 30 days</li>
+        <li>Source-controlled, handover-ready Day 1. No lock-in.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CLOSER ============== -->
+<section class="closer">
+  <p class="closer-quote">
+    "AP Tech's moat used to be vertical integration. The next moat is the
+    operating layer that runs on top of it. That's a 90-day build, not a
+    multi-year programme."
+  </p>
+  <div class="closer-attr">— The wedge for tomorrow's conversation</div>
+
+  <div class="closer-cta">
+    <span class="cta-label">Suggested next step</span>
+    <span class="cta-text">Phase 0 · 2-week diagnostic in Singapore</span>
+  </div>
+</section>
+
+<footer>
+  <span>AP Technologies × KTG · Architectural Read · Confidential</span>
+  <span>2026·05·07 · Pre-meeting brief · Single architect, ninety days, five domains.</span>
+</footer>
+
+</div>
+
+<script>
+  // Subtle entrance animation on scroll for sections, kept minimal and stable for screenshare
+  document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('section, .domain, .trigger, .site').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(8px)';
+      el.style.transition = 'opacity 600ms ease-out, transform 600ms ease-out';
+      observer.observe(el);
+    });
+  });
+</script>
+
+</body>
+</html>

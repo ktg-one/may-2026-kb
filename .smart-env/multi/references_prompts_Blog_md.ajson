@@ -1,0 +1,2 @@
+
+"smart_sources:references/prompts/Blog.md": {"path":"references/prompts/Blog.md","last_embed":{"hash":null},"embeddings":{},"last_read":{"hash":"z5ag4s","at":1774932974189},"class_name":"SmartSource","last_import":{"mtime":1772881966197,"size":114,"at":1774932974189,"hash":"z5ag4s"},"blocks":{"#---frontmatter---":[1,5]},"outlinks":[],"metadata":{"banner":"_archive/blog/5 5.png","date":"<% tp.file.creation_date(\"YYYY-MM-DD\") %>","Category":"Agentic Framework"},"task_lines":[],"tasks":{},"codeblock_ranges":[]},
