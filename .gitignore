@@ -1,0 +1,28 @@
+# Executables / installers
+*.exe
+*.msi
+*.dmg
+*.pkg
+
+# Archives (large binary blobs)
+*.zip
+*.tar.gz
+*.7z
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs
+*.log
+
+# Temp
+*.tmp
+*.temp
