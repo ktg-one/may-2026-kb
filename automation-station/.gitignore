@@ -1,0 +1,15 @@
+# Secrets
+.env
+
+# Persistent n8n state — large, machine-specific, and contains credentials
+data/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log

@@ -1,0 +1,48 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Portable Automation Station — n8n + n8n-mcp ready
+# Copy this folder to any machine with Docker. Run ./start.sh (or start.ps1).
+# All state lives in ./data and ./workflows — those ARE the station.
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: automation-station-n8n
+    restart: unless-stopped
+    ports:
+      - "${N8N_PORT:-5678}:5678"
+    environment:
+      # Identity / URLs
+      - N8N_HOST=${N8N_HOST:-localhost}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=${N8N_PROTOCOL:-http}
+      - WEBHOOK_URL=${WEBHOOK_URL:-http://localhost:5678/}
+      - GENERIC_TIMEZONE=${TZ:-Asia/Singapore}
+      # Persistence — SQLite by default (portable). Switch to postgres in prod.
+      - DB_TYPE=sqlite
+      - N8N_USER_FOLDER=/home/node/.n8n
+      # Auth — turn on basic auth for any non-localhost exposure
+      - N8N_BASIC_AUTH_ACTIVE=${N8N_BASIC_AUTH_ACTIVE:-false}
+      - N8N_BASIC_AUTH_USER=${N8N_BASIC_AUTH_USER:-}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD:-}
+      # Capability flags
+      - N8N_RUNNERS_ENABLED=true
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_VERSION_NOTIFICATIONS_ENABLED=true
+      - N8N_TEMPLATES_ENABLED=true
+      # Encryption key — read from .env so backup/restore preserves credentials
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+    volumes:
+      - ./data:/home/node/.n8n
+      - ./workflows:/workflows
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:5678/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+# n8n-mcp runs locally via npx from Claude Code's MCP config — not as a container.
+# It connects to the n8n container above via http://localhost:${N8N_PORT}/api/v1.
+# See claude-code-mcp.json for the exact config block.

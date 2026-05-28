@@ -203,6 +203,8 @@ Types this vault has committed to so far. Append when a new type is introduced v
 | `runbook` | 2026-05-28 | Operational runbook (what to do when a specific situation occurs — delivery, incident, etc.) |
 | `register` | 2026-05-28 | Tracked list with owner / status / mitigation (risk register, decision log, etc.) |
 | `checklist` | 2026-05-28 | Time-boxed gated checklist (launch, audit, etc.) |
+| `playbook` | 2026-05-28 | Multi-phase build plan for a feature or capability (AI-on-site, channel-partner rollout, etc.) |
+| `legal` | 2026-05-28 | Legal documents that ship publicly (Privacy Policy, ToS, partner agreements) — drafted in vault, reviewed by lawyer, published on the site |
 | `lint-report` | (queued — will be created on first `/lint` run) | Periodic health-check output |
 | `query` | (queued — created when the first `/query` answer is filed back) | Filed query answers |
 
@@ -233,7 +235,7 @@ Pages that should typically be in the agent's working context when active on thi
 
 ## Plugin
 
-`llm-wiki` plugin v2.0.0. Source: [`ktg-one/llm-wiki`](https://github.com/ktg-one/llm-wiki) — fork of `ekadetov/llm-wiki`. Working tree at `knowledge2026/llm-wiki/` (separate nested git repo, untracked by the KB). Registered as a github marketplace + enabled in `.claude/settings.json` so any machine that pulls the KB installs the plugin on first session.
+`llm-wiki` plugin v2.0.0. Source: [`ktg-one/llm-wiki`](https://github.com/ktg-one/llm-wiki) — fork of `ekadetov/llm-wiki`. Working tree at `plugins/llm-wiki/` (separate nested git repo, gitignored by the vault). Registered as a github marketplace + enabled in `.claude/settings.json` so any machine that pulls the KB installs the plugin on first session.
 
 Command surface: a single `/llm-wiki:wiki` command with subcommands — `init`, `ingest`, `query`, `lint`, `compile`. Underlying skill: `skills/wiki/SKILL.md` inside the plugin.
 

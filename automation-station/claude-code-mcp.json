@@ -1,0 +1,30 @@
+{
+  "_comment": "Add the n8n-mcp block below into your Claude Code MCP config (~/.claude/settings.json or .mcp.json in project root). After adding, restart Claude Code.",
+
+  "mcpServers": {
+    "n8n-mcp": {
+      "command": "npx",
+      "args": ["-y", "n8n-mcp"],
+      "env": {
+        "MCP_MODE": "stdio",
+        "LOG_LEVEL": "error",
+        "DISABLE_CONSOLE_OUTPUT": "true",
+        "N8N_API_URL": "http://localhost:5678/api/v1",
+        "N8N_API_KEY": "PASTE_API_KEY_FROM_DOTENV_HERE"
+      }
+    }
+  },
+
+  "_alternative_docker_method": {
+    "_comment": "If you'd rather run n8n-mcp as a Docker sidecar (always on, no npx spawn), uncomment the service block in docker-compose.yml and use this MCP config instead:",
+    "mcpServers": {
+      "n8n-mcp": {
+        "command": "docker",
+        "args": ["exec", "-i", "automation-station-n8n-mcp", "node", "/app/dist/mcp/index.js"],
+        "env": {
+          "MCP_MODE": "stdio"
+        }
+      }
+    }
+  }
+}
